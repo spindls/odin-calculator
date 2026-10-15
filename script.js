@@ -35,6 +35,8 @@ function operate(operator, num1, num2) {
 const arrayNumber1 = [];
 const arrayNumber2 = [];
 let isSecondNumber = false;
+let result = "";
+let justCalculated = false;
 const display = document.querySelector(".display");
 const numberButtons = document.querySelectorAll(".number");
 const equalButton = document.querySelector(".equal");
@@ -44,8 +46,9 @@ const operatorButtons = document.querySelectorAll(".symbol");
     numberButtons.forEach(button => {
         button.addEventListener("click", (event) => {
         const buttonText = event.target.textContent.trim();
-
-    if (!isSecondNumber) {
+        if (justCalculated === true) {  clear();} 
+        justCalculated = false;
+        if (!isSecondNumber) {
         arrayNumber1.push(buttonText);
         const numbers = arrayNumber1.join("");
             display.textContent = numbers;
@@ -87,7 +90,18 @@ const operatorButtons = document.querySelectorAll(".symbol");
 
     equalButton.addEventListener("click", (event) => {
         if (num1 !== "" && num2 !== "" && operator !== null) {
-       const result = operate(operator, num1, num2);
+       result = operate(operator, num1, num2);
+       justCalculated = true;
        display.textContent = result;
         };
     });
+
+    function clear() {
+        arrayNumber1.length = 0;
+        arrayNumber2.length = 0;
+        num1 = "";
+        num2 = "";
+        operator = null;
+        isSecondNumber = false;
+        display.textContent = "";
+    }
