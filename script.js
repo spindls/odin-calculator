@@ -25,7 +25,7 @@ function operate(operator, num1, num2) {
         return subtract(num1, num2);
     } else if (operator === "x") {
         return multiply(num1, num2);
-    }  else if (operator === "&divide") {
+    }  else if (operator === "÷") {
         return divide(num1, num2);
     } else {
         return "ERROR";
@@ -69,6 +69,12 @@ const operatorButtons = document.querySelectorAll(".symbol");
     operatorButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             const symbolText = event.target.textContent.trim();
+            if (num1 != "" && operator != null && num2 != "") {
+                let result = operate(operator, num1, num2);
+                display.textContent = result;
+                justCalculated = true;
+                isResultDisplayed = true;
+            }
             if (isResultDisplayed === true) {
                 console.log(display.textContent);
                 arrayNumber1.length = 0;
