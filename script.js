@@ -37,6 +37,7 @@ const arrayNumber2 = [];
 let isSecondNumber = false;
 let result = "";
 let justCalculated = false;
+let isResultDisplayed = false;
 const display = document.querySelector(".display");
 const numberButtons = document.querySelectorAll(".number");
 const equalButton = document.querySelector(".equal");
@@ -68,6 +69,18 @@ const operatorButtons = document.querySelectorAll(".symbol");
     operatorButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             const symbolText = event.target.textContent.trim();
+            if (isResultDisplayed === true) {
+                console.log(display.textContent);
+                arrayNumber1.length = 0;
+                arrayNumber2.length = 0;
+                arrayNumber1.push(display.textContent);
+                const numbers = arrayNumber1.join("");
+            display.textContent = numbers;
+            num1 = Number(numbers);
+                console.log("num1:", num1);
+                isSecondNumber = true;
+                justCalculated = false;
+            }
             operator = symbolText; 
             isSecondNumber = true;
             display.textContent = `${arrayNumber1.join("")} ${operator}`;
@@ -93,6 +106,7 @@ const operatorButtons = document.querySelectorAll(".symbol");
        result = operate(operator, num1, num2);
        justCalculated = true;
        display.textContent = result;
+       isResultDisplayed = true;
         };
     });
 
