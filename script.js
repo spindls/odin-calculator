@@ -38,6 +38,7 @@ let isSecondNumber = false;
 let result = "";
 let justCalculated = false;
 let isResultDisplayed = false;
+let isLastCharacterNum = false;
 const display = document.querySelector(".display");
 const numberButtons = document.querySelectorAll(".number");
 const equalButton = document.querySelector(".equal");
@@ -55,12 +56,14 @@ const operatorButtons = document.querySelectorAll(".symbol");
             display.textContent = numbers;
             num1 = Number(numbers);
             console.log("num1:", num1);
+            isLastCharacterNum = true;
         } else {
             arrayNumber2.push(buttonText);
             const numbers2 = arrayNumber2.join("");
             display.textContent = `${arrayNumber1.join("")} ${operator} ${numbers2}`;
             num2 = Number(numbers2);
             console.log("num2:", num2);
+            isLastCharacterNum = true;
         };
     });
     });
@@ -69,6 +72,7 @@ const operatorButtons = document.querySelectorAll(".symbol");
     operatorButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             const symbolText = event.target.textContent.trim();
+            if (isLastCharacterNum === true) {
             if (num1 != "" && operator != null && num2 != "") {
                 let result = operate(operator, num1, num2);
                 result = Math.round(result * 100) / 100;
@@ -92,8 +96,9 @@ const operatorButtons = document.querySelectorAll(".symbol");
             isSecondNumber = true;
             display.textContent = `${arrayNumber1.join("")} ${operator}`;
             console.log("operator:", operator);
-            lastCharacterType = "operator"
+        }
         });
+
     });
 
 
@@ -115,6 +120,8 @@ const operatorButtons = document.querySelectorAll(".symbol");
             justCalculated = true;
             display.textContent = result;
             isResultDisplayed = true;
+            console.log("result:", result);
+            console.log("num2:", num2);
         };
     });
 
@@ -129,4 +136,5 @@ const operatorButtons = document.querySelectorAll(".symbol");
         justCalculated = false;
         isResultDisplayed = false;
         display.textContent = "";
+        isLastCharacterNum = false;
     }
