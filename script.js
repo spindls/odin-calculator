@@ -48,21 +48,21 @@ const operatorButtons = document.querySelectorAll(".symbol");
         button.addEventListener("click", (event) => {
         const buttonText = event.target.textContent.trim();
         if (justCalculated === true) {  clear();} 
-        justCalculated = false;
+            justCalculated = false;
         if (!isSecondNumber) {
-        arrayNumber1.push(buttonText);
-        const numbers = arrayNumber1.join("");
+            arrayNumber1.push(buttonText);
+            const numbers = arrayNumber1.join("");
             display.textContent = numbers;
             num1 = Number(numbers);
-        console.log("num1:", num1);
-    } else {
-        arrayNumber2.push(buttonText);
-        const numbers2 = arrayNumber2.join("");
-        display.textContent = `${arrayNumber1.join("")} ${operator} ${numbers2}`;
-        num2 = Number(numbers2);
-        console.log("num2:", num2);
-    }
-    })
+            console.log("num1:", num1);
+        } else {
+            arrayNumber2.push(buttonText);
+            const numbers2 = arrayNumber2.join("");
+            display.textContent = `${arrayNumber1.join("")} ${operator} ${numbers2}`;
+            num2 = Number(numbers2);
+            console.log("num2:", num2);
+        };
+    });
     });
 
     
@@ -82,8 +82,8 @@ const operatorButtons = document.querySelectorAll(".symbol");
                 arrayNumber2.length = 0;
                 arrayNumber1.push(display.textContent);
                 const numbers = arrayNumber1.join("");
-            display.textContent = numbers;
-            num1 = Number(numbers);
+                display.textContent = numbers;
+                num1 = Number(numbers);
                 console.log("num1:", num1);
                 isSecondNumber = true;
                 justCalculated = false;
@@ -92,19 +92,14 @@ const operatorButtons = document.querySelectorAll(".symbol");
             isSecondNumber = true;
             display.textContent = `${arrayNumber1.join("")} ${operator}`;
             console.log("operator:", operator);
-        })
-    })
+            lastCharacterType = "operator"
+        });
+    });
 
 
     const clearButton = document.querySelector(".clear");
-    clearButton.addEventListener("click", (event) => {
-        arrayNumber1.length = 0;
-        arrayNumber2.length = 0;
-        num1 = "";
-        num2 = "";
-        operator = null;
-        isSecondNumber = false;
-        display.textContent = "";
+    clearButton.addEventListener("click", (event) => { 
+        clear();
     });
 
 
@@ -115,11 +110,11 @@ const operatorButtons = document.querySelectorAll(".symbol");
 
         }
         if (num1 !== "" && num2 !== "" && operator !== null) {
-       result = operate(operator, num1, num2);
-       result = Math.round(result * 100) / 100;
-       justCalculated = true;
-       display.textContent = result;
-       isResultDisplayed = true;
+            result = operate(operator, num1, num2);
+            result = Math.round(result * 100) / 100;
+            justCalculated = true;
+            display.textContent = result;
+            isResultDisplayed = true;
         };
     });
 
@@ -130,5 +125,8 @@ const operatorButtons = document.querySelectorAll(".symbol");
         num2 = "";
         operator = null;
         isSecondNumber = false;
+        result = "";
+        justCalculated = false;
+        isResultDisplayed = false;
         display.textContent = "";
     }
