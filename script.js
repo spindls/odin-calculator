@@ -71,6 +71,7 @@ const operatorButtons = document.querySelectorAll(".symbol");
             const symbolText = event.target.textContent.trim();
             if (num1 != "" && operator != null && num2 != "") {
                 let result = operate(operator, num1, num2);
+                result = Math.round(result * 100) / 100;
                 display.textContent = result;
                 justCalculated = true;
                 isResultDisplayed = true;
@@ -110,6 +111,7 @@ const operatorButtons = document.querySelectorAll(".symbol");
     equalButton.addEventListener("click", (event) => {
         if (num1 !== "" && num2 !== "" && operator !== null) {
        result = operate(operator, num1, num2);
+       result = Math.round(result * 100) / 100;
        justCalculated = true;
        display.textContent = result;
        isResultDisplayed = true;
