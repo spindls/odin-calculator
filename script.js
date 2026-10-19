@@ -109,6 +109,11 @@ const operatorButtons = document.querySelectorAll(".symbol");
 
 
     equalButton.addEventListener("click", (event) => {
+        if (num1 !== "" && num2 === 0 && operator === "÷") {
+            clear();
+            display.textContent = "you cannot do that!";
+
+        }
         if (num1 !== "" && num2 !== "" && operator !== null) {
        result = operate(operator, num1, num2);
        result = Math.round(result * 100) / 100;
