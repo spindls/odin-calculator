@@ -50,7 +50,7 @@ const characterLimit = [];
     numberButtons.forEach(button => {
         button.addEventListener("click", (event) => {
         const buttonText = event.target.textContent.trim();
-        if (characterLimit.length < 19) {
+        if (characterLimit.length < 18) {
         if (justCalculated === true) {  clear();} 
             justCalculated = false;
         if (!isSecondNumber) {
@@ -76,7 +76,7 @@ const characterLimit = [];
     operatorButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             const symbolText = event.target.textContent.trim();
-            if (characterLimit.length < 19) {
+            if (characterLimit.length < 18) {
             if (isLastCharacterNum === true) {
             if (num1 != "" && operator != null && num2 != "") {
                 let result = operate(operator, num1, num2);
